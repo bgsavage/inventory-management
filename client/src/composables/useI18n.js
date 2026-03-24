@@ -90,6 +90,27 @@ export function useI18n() {
     return customerName
   }
 
+  const currencySymbol = computed(() => currentCurrency.value === 'JPY' ? '¥' : '$')
+
+  // Translate category names
+  const translateCategory = (category) => {
+    const categoryMap = {
+      'Circuit Boards': t('categories.circuitBoards'),
+      'Sensors': t('categories.sensors'),
+      'Actuators': t('categories.actuators'),
+      'Controllers': t('categories.controllers'),
+      'Power Supplies': t('categories.powerSupplies')
+    }
+    return categoryMap[category] || category
+  }
+
+  // Format date with locale awareness
+  const formatDate = (dateString, options = { year: 'numeric', month: 'short', day: 'numeric' }) => {
+    if (!dateString) return 'N/A'
+    const locale = currentLocale.value === 'ja' ? 'ja-JP' : 'en-US'
+    return new Date(dateString).toLocaleDateString(locale, options)
+  }
+
   // Translate warehouse names
   const translateWarehouse = (warehouseName) => {
     if (currentLocale.value === 'ja') {
@@ -121,8 +142,11 @@ export function useI18n() {
     currentCurrency,
     availableLocales,
     localeName,
+    currencySymbol,
     translateProductName,
     translateCustomerName,
-    translateWarehouse
+    translateCategory,
+    translateWarehouse,
+    formatDate
   }
 }

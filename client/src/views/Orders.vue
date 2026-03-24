@@ -11,19 +11,19 @@
       <div class="stats-grid">
         <div class="stat-card success">
           <div class="stat-label">{{ t('status.delivered') }}</div>
-          <div class="stat-value">{{ getOrdersByStatus('Delivered').length }}</div>
+          <div class="stat-value">{{ ordersByStatus.Delivered }}</div>
         </div>
         <div class="stat-card info">
           <div class="stat-label">{{ t('status.shipped') }}</div>
-          <div class="stat-value">{{ getOrdersByStatus('Shipped').length }}</div>
+          <div class="stat-value">{{ ordersByStatus.Shipped }}</div>
         </div>
         <div class="stat-card warning">
           <div class="stat-label">{{ t('status.processing') }}</div>
-          <div class="stat-value">{{ getOrdersByStatus('Processing').length }}</div>
+          <div class="stat-value">{{ ordersByStatus.Processing }}</div>
         </div>
         <div class="stat-card danger">
           <div class="stat-label">{{ t('status.backordered') }}</div>
-          <div class="stat-value">{{ getOrdersByStatus('Backordered').length }}</div>
+          <div class="stat-value">{{ ordersByStatus.Backordered }}</div>
         </div>
       </div>
 
@@ -104,7 +104,7 @@
                       {{ t('orders.itemsCount', { count: order.items.length }) }}
                     </summary>
                     <div class="items-dropdown">
-                      <div v-for="(item, idx) in order.items" :key="idx" class="item-entry">
+                      <div v-for="item in order.items" :key="`${item.name}-${item.quantity}`" class="item-entry">
                         <span class="item-name">{{ translateProductName(item.name) }}</span>
                         <span class="item-meta">{{ t('orders.quantity') }}: {{ item.quantity }} @ {{ currencySymbol }}{{ item.unit_price }}</span>
                       </div>
@@ -137,11 +137,7 @@ import { useI18n } from '../composables/useI18n'
 export default {
   name: 'Orders',
   setup() {
-    const { t, currentCurrency, translateProductName, translateCustomerName } = useI18n()
-
-    const currencySymbol = computed(() => {
-      return currentCurrency.value === 'JPY' ? '¥' : '$'
-    })
+    const { t, currencySymbol, translateProductName, translateCustomerName, formatDate } = useI18n()
     const loading = ref(true)
     const error = ref(null)
     const orders = ref([])
@@ -180,9 +176,11 @@ export default {
       loadOrders()
     })
 
-    const getOrdersByStatus = (status) => {
-      return orders.value.filter(order => order.status === status)
-    }
+    const ordersByStatus = computed(() => {
+      const counts = { Delivered: 0, Shipped: 0, Processing: 0, Backordered: 0 }
+      orders.value.forEach(o => { if (counts[o.status] !== undefined) counts[o.status]++ })
+      return counts
+    })
 
     const getOrderStatusClass = (status) => {
       const statusMap = {
@@ -192,16 +190,6 @@ export default {
         'Backordered': 'danger'
       }
       return statusMap[status] || 'info'
-    }
-
-    const formatDate = (dateString) => {
-      const { currentLocale } = useI18n()
-      const locale = currentLocale.value === 'ja' ? 'ja-JP' : 'en-US'
-      return new Date(dateString).toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      })
     }
 
     const loadRestockingOrders = async () => {
@@ -224,7 +212,7 @@ export default {
       error,
       orders,
       restockingOrders,
-      getOrdersByStatus,
+      ordersByStatus,
       getOrderStatusClass,
       formatDate,
       currencySymbol,
