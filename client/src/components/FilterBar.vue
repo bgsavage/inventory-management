@@ -102,27 +102,20 @@ export default {
 
 <style scoped>
 .filters-bar {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 0.75rem 0;
-  position: sticky;
-  top: 70px;
-  z-index: 90;
+  display: flex;
+  align-items: center;
 }
 
 .filters-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 2rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .filters-grid {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex: 1;
 }
 
@@ -133,23 +126,23 @@ export default {
 }
 
 .filter-group label {
-  font-size: 0.75rem;
+  font-size: 0.688rem;
   font-weight: 600;
   color: #64748b;
   white-space: nowrap;
 }
 
 .filter-select {
-  padding: 0.4rem 0.75rem;
+  padding: 0.3rem 0.5rem;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
-  font-size: 0.813rem;
+  font-size: 0.75rem;
   color: #0f172a;
   background: white;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;
-  min-width: 140px;
+  min-width: 110px;
 }
 
 .filter-select:hover {
@@ -166,7 +159,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem;
+  padding: 0.3rem;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
@@ -188,7 +181,7 @@ export default {
 }
 
 .reset-filters-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 </style>

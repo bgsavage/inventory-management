@@ -112,6 +112,13 @@ export default {
     onTimeDelivery: 'On-Time Delivery',
     itemsCount: '{count} items',
     quantity: 'Qty',
+    restocking: {
+      title: 'Submitted Restocking Orders',
+      badge: 'Restocking',
+      expectedDelivery: 'Expected Delivery',
+      leadTime: 'Lead Time',
+      days: 'days'
+    },
     table: {
       orderNumber: 'Order Number',
       orderId: 'Order ID',
@@ -324,5 +331,40 @@ export default {
     filter: 'Filter',
     export: 'Export',
     items: 'items'
+  },
+
+  // Restocking
+  restocking: {
+    navLabel: 'Restocking',
+    title: 'Restocking Recommendations',
+    description: 'Set a budget and get AI-driven restocking recommendations based on demand forecasts.',
+    budgetTitle: 'Budget',
+    sliderHint: 'Drag the slider to adjust your restocking budget and get updated recommendations.',
+    totalBudget: 'Total Budget',
+    estimatedCost: 'Estimated Cost',
+    budgetRemaining: 'Budget Remaining',
+    itemsToRestock: 'Items to Restock',
+    recommendationsTitle: 'Recommended Items',
+    noRecommendations: 'No recommendations available for the current budget.',
+    totalItems: '{count} items selected',
+    totalCost: 'Total Cost',
+    placeOrder: 'Place Restocking Order',
+    submitting: 'Submitting...',
+    orderPlaced: 'Order Placed Successfully',
+    orderNumber: 'Order Number',
+    expectedDelivery: 'Expected Delivery',
+    totalValue: 'Total Value',
+    placeAnother: 'Place Another Order',
+    table: {
+      sku: 'SKU',
+      itemName: 'Item Name',
+      trend: 'Trend',
+      currentDemand: 'Current Demand',
+      forecastedDemand: 'Forecasted Demand',
+      demandGap: 'Demand Gap',
+      unitCost: 'Unit Cost',
+      restockQty: 'Restock Qty',
+      lineTotal: 'Line Total'
+    }
   }
 }

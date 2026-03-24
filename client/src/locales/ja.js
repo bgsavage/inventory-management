@@ -112,6 +112,13 @@ export default {
     onTimeDelivery: '定時配達',
     itemsCount: '{count}件',
     quantity: '数量',
+    restocking: {
+      title: '提出済み補充注文',
+      badge: '補充',
+      expectedDelivery: '予定納期',
+      leadTime: 'リードタイム',
+      days: '日'
+    },
     table: {
       orderNumber: '注文番号',
       orderId: '注文ID',
@@ -324,6 +331,41 @@ export default {
     filter: 'フィルター',
     export: 'エクスポート',
     items: '件'
+  },
+
+  // Restocking
+  restocking: {
+    navLabel: '補充',
+    title: '補充推奨',
+    description: '予算を設定して、需要予測に基づいた補充推奨を取得します。',
+    budgetTitle: '予算',
+    sliderHint: 'スライダーを動かして補充予算を調整し、更新された推奨を取得してください。',
+    totalBudget: '合計予算',
+    estimatedCost: '推定コスト',
+    budgetRemaining: '残余予算',
+    itemsToRestock: '補充品目数',
+    recommendationsTitle: '推奨品目',
+    noRecommendations: '現在の予算では推奨品目がありません。',
+    totalItems: '{count}品目選択',
+    totalCost: '合計コスト',
+    placeOrder: '補充注文を発注',
+    submitting: '送信中...',
+    orderPlaced: '注文が正常に発注されました',
+    orderNumber: '注文番号',
+    expectedDelivery: '予定納期',
+    totalValue: '合計金額',
+    placeAnother: '別の注文を発注',
+    table: {
+      sku: 'SKU',
+      itemName: '品目名',
+      trend: 'トレンド',
+      currentDemand: '現在の需要',
+      forecastedDemand: '予測需要',
+      demandGap: '需要ギャップ',
+      unitCost: '単価',
+      restockQty: '補充数量',
+      lineTotal: '行合計'
+    }
   },
 
   // Product Names
